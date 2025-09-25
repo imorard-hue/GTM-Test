@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba GTM</title>
+  <title>Prueba GTM con ResponseId</title>
 
-  <!-- Expose ResponseId to GTM -->
+  <!-- Expose ResponseId to GTM BEFORE GTM loads -->
   <script>
     window.dataLayer = window.dataLayer || [];
-  
-    // Generate a random ID
+
     function generateResponseId() {
       return 'resp-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
     }
-  
+
     var responseId = generateResponseId();
-  
-    // Push into dataLayer with a clear event
+
+    // Push event into dataLayer so GTM knows ResponseId is ready
     window.dataLayer.push({
-      event: 'ResponseIdReady',   // 🔹 custom event GTM listens for
+      event: 'ResponseIdReady',   // 👈 matches your GTM trigger
       ResponseId: responseId
     });
-  
+
     console.log("Exposed to GTM:", responseId);
   </script>
 
@@ -44,9 +43,6 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <h1>🚀 Página de prueba con GTM</h1>
-  <p>Si todo está bien, tu Tag Manager debería cargar en esta página.</p>
+  <p>Si todo está bien, tu Tag Manager debería capturar el ResponseId y enviarlo a tu Apps Script.</p>
 </body>
 </html>
-
-
-
