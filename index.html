@@ -8,25 +8,22 @@
   <!-- Expose variables to GTM -->
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    // Example: generate a random ID for the visitor
-    function generateId() {
-      return 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+  
+    // Generate a random ID (you can change the format if you like)
+    function generateResponseId() {
+      return 'resp-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
     }
-
-    var visitorId = generateId();
-    var visitDate = new Date().toISOString();
-
+  
+    var responseId = generateResponseId();
+  
     // Push into dataLayer
     window.dataLayer.push({
       'event': 'customPageLoad',
-      'visitorId': visitorId,
-      'visitDate': visitDate
+      'ResponseId': responseId
     });
-
-    console.log("Exposed to GTM:", visitorId, visitDate);
+  
+    console.log("Exposed to GTM:", responseId);
   </script>
-
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -49,3 +46,4 @@
   <p>Si todo está bien, tu Tag Manager debería cargar en esta página.</p>
 </body>
 </html>
+
