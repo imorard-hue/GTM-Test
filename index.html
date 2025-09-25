@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prueba GTM</title>
 
+  <!-- Expose variables to GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    // Example: generate a random ID for the visitor
+    function generateId() {
+      return 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+    }
+
+    var visitorId = generateId();
+    var visitDate = new Date().toISOString();
+
+    // Push into dataLayer
+    window.dataLayer.push({
+      'event': 'customPageLoad',
+      'visitorId': visitorId,
+      'visitDate': visitDate
+    });
+
+    console.log("Exposed to GTM:", visitorId, visitDate);
+  </script>
+
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
