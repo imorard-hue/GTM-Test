@@ -5,25 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prueba GTM</title>
 
-  <!-- Expose variables to GTM -->
+  <!-- Expose ResponseId to GTM -->
   <script>
     window.dataLayer = window.dataLayer || [];
   
-    // Generate a random ID (you can change the format if you like)
+    // Generate a random ID
     function generateResponseId() {
       return 'resp-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
     }
   
     var responseId = generateResponseId();
   
-    // Push into dataLayer
+    // Push into dataLayer with a clear event
     window.dataLayer.push({
-      'event': 'customPageLoad',
-      'ResponseId': responseId
+      event: 'ResponseIdReady',   // 🔹 custom event GTM listens for
+      ResponseId: responseId
     });
   
     console.log("Exposed to GTM:", responseId);
   </script>
+
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -46,4 +47,6 @@
   <p>Si todo está bien, tu Tag Manager debería cargar en esta página.</p>
 </body>
 </html>
+
+
 
